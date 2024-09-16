@@ -1,49 +1,31 @@
 const express = require("express")
+const connectDB = require('./config/db');
 const mongoose = require('mongoose');
+
+connectDB();
 const app = express()
 const port = 3000
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/your-database-name', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://localhost/your-database-name', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+//const db = mongoose.connection;
+//db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//db.once('open', () => {
+  //console.log('Connected to MongoDB');
+//});
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+//app.listen(PORT, () => {
+  //console.log(`Server is running on port ${PORT}`);
+//});
 // DB connectivity code from this site - https://https://devsarticles.com/mongo-db-connection-with-express-js
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.get("/", (req, res) => {
-    res.send("hello world")
-});
 
 let books = [];
  app.use(express.json())
  // create a book 
 
- app.post('/books', (req, res) => {
+ /*app.post('/books', (req, res) => {
     //logic to add a book
     const { title, author } = req.body;
     if (!title || !author) {
@@ -91,7 +73,7 @@ let books = [];
     res.status(204).send();
   });
 
-  app.listen (port ,() => {
+  */app.listen (port ,() => {
     console.log('server running at http://localhost:${port}')
   })
 
