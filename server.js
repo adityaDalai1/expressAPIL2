@@ -1,5 +1,6 @@
-const express = require("express")
+ express = require("express")
 const connectDB = require('./config/db');
+const bookRoutes = require('./routes/bookRoutes');
 const mongoose = require('mongoose');
 
 connectDB();
@@ -23,57 +24,10 @@ const port = 3000
 
 let books = [];
  app.use(express.json())
- // create a book 
+ 
+  app.use('/api', bookRoutes); // Use book routes with prefix '/api'
 
- /*app.post('/books', (req, res) => {
-    //logic to add a book
-    const { title, author } = req.body;
-    if (!title || !author) {
-      return res.status(400).send('Missing title or author');
-    }
-  
-    const newBook = { id: books.length + 1, title, author };
-    books.push(newBook);
-    res.status(201).send(newBook);
- });
-
- //get all book
- app.get('/books', (req, res) => {
-    res.json(books);
-
- })
-
- app.get('/books/:id', (req, res) => {
-    const book = books.find(b => b.id === parseInt(req.params.id));
-    if (!book) {
-      return res.status(404).send('Book not found');
-    }
-    res.json(book);
-  });
-
-  app.put('/books/:id', (req, res) => {
-    const book = books.find(b => b.id === parseInt(req.params.id));
-    if (!book) {
-      return res.status(404).send('Book not found');
-    }
-  
-    const { title, author } = req.body;
-    book.title = title || book.title;
-    book.author = author || book.author;
-  
-    res.send(book);
-  });
-  app.delete('/books/:id', (req, res) => {
-    const bookIndex = books.findIndex(b => b.id === parseInt(req.params.id));
-    if (bookIndex === -1) {
-      return res.status(404).send('Book not found');
-    }
-  
-    books.splice(bookIndex, 1);
-    res.status(204).send();
-  });
-
-  */app.listen (port ,() => {
+  app.listen (port ,() => {
     console.log('server running at http://localhost:${port}')
   })
 
